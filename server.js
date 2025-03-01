@@ -88,6 +88,10 @@ cron.schedule("0 16 * * *", async () => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
+app.get("/", (req, res) => {
+  res.send("Server is running properly");
+});
+
 // Dummy Notification Function (Replace with Email/SMS/Push Logic)
 function sendNotification(user, message) {
   console.log(`📩 Sending to ${user.email}: ${message}`);
