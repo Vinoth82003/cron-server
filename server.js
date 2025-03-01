@@ -23,7 +23,7 @@ console.log("Updated Schedule Will Run in 05:00 PM UTC");
 
 // 🕕 CRON JOB - Runs Every Day at 6:30 AM UTC
 cron.schedule(
-  "40 19 * * *",
+  "15 20 * * *",
   async () => {
     console.log("🔔 Running event reminder at 5:00 PM UTC...");
 
@@ -85,6 +85,8 @@ cron.schedule(
       } else {
         console.log("✅ No upcoming events for tomorrow.");
       }
+
+      //   "http://localhost:8000/api/students/get/students/10,1"
     } catch (error) {
       console.error("❌ Error fetching events:", error.message);
     }
