@@ -22,7 +22,7 @@ const sendReminderEmail = require("./Notification/sendReminderEmail");
 console.log("🔔 Running event reminder.. out of schedule...");
 
 // 🕕 CRON JOB - Runs Every Day at 6:30 AM UTC
-cron.schedule("15 16 * * *", async () => {
+cron.schedule("*/2 * * * *", async () => {
   console.log("🔔 Running event reminder..");
 
   try {
