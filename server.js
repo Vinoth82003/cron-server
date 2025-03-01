@@ -19,11 +19,11 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 const sendReminderEmail = require("./Notification/sendReminderEmail");
 
-console.log("Updated Schedule Will Run in 05:00 PM UTC");
+console.log("\nUpdated Schedule Will Run in 05:00 PM UTC\n");
 
 // 🕕 CRON JOB - Runs Every Day at 6:30 AM UTC
 cron.schedule(
-  "15 20 * * *",
+  "15 8 * * *",
   async () => {
     console.log("🔔 Running event reminder at 5:00 PM UTC...");
 
@@ -66,9 +66,12 @@ cron.schedule(
             );
             const registeredUsers = regResponse.data.registration;
 
+            console.log("users", registeredUsers);
+
             if (registeredUsers.length > 0) {
               registeredUsers.forEach((user) => {
                 sendReminderEmail(user, event);
+                console.log(user.name);
               });
             } else {
               console.log(
@@ -90,11 +93,11 @@ cron.schedule(
     } catch (error) {
       console.error("❌ Error fetching events:", error.message);
     }
-  },
-  {
-    scheduled: true,
-    timezone: "Asia/Singapore",
   }
+  // {
+  //   scheduled: true,
+  //   timezone: "Asia/Singapore",
+  // }
 );
 
 // Server Start
