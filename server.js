@@ -20,7 +20,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const sendReminderEmail = require("./Notification/sendReminderEmail");
 
 // 🕕 CRON JOB - Runs Every Day at 6:30 AM UTC
-cron.schedule("37 15 * * *", async () => {
+cron.schedule("0 16 * * *", async () => {
   console.log("🔔 Running event reminder..");
 
   try {
