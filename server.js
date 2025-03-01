@@ -23,7 +23,7 @@ console.log("Updated Schedule Will Run in 05:00 PM UTC");
 
 // 🕕 CRON JOB - Runs Every Day at 6:30 AM UTC
 cron.schedule(
-  "0 17 * * *",
+  "40 19 * * *",
   async () => {
     console.log("🔔 Running event reminder at 5:00 PM UTC...");
 
@@ -91,7 +91,7 @@ cron.schedule(
   },
   {
     scheduled: true,
-    timezone: "UTC",
+    timezone: "Asia/Singapore",
   }
 );
 
