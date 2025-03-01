@@ -19,8 +19,10 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 const sendReminderEmail = require("./Notification/sendReminderEmail");
 
+console.log("🔔 Running event reminder.. out of schedule...");
+
 // 🕕 CRON JOB - Runs Every Day at 6:30 AM UTC
-cron.schedule("0 16 * * *", async () => {
+cron.schedule("15 16 * * *", async () => {
   console.log("🔔 Running event reminder..");
 
   try {
@@ -91,8 +93,3 @@ app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 app.get("/", (req, res) => {
   res.send("Server is running properly");
 });
-
-// Dummy Notification Function (Replace with Email/SMS/Push Logic)
-function sendNotification(user, message) {
-  console.log(`📩 Sending to ${user.email}: ${message}`);
-}
