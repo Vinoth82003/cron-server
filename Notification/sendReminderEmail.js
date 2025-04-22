@@ -15,20 +15,7 @@ const sendReminderEmail = async (user, eventDetails) => {
   // Convert fromDate to desired format
   const eventDate = new Date(fromDate);
   const formattedDate = eventDate.toISOString().split("T")[0];
-  const monthNames = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MAY",
-    "JUN",
-    "JUL",
-    "AUG",
-    "SEP",
-    "OCT",
-    "NOV",
-    "DEC",
-  ];
+  const monthNames = ["JAN", "FEB"];
   const month = monthNames[eventDate.getUTCMonth()];
   const day = eventDate.getUTCDate();
   const year = eventDate.getUTCFullYear();
