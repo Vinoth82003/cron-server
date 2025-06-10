@@ -27,7 +27,7 @@ cron.schedule(
     //   headers: { "Content-Type": "application/json" },
     //   body: JSON.stringify({ code: "4321" }),
     // });
-    console.log("Date / Time:", new Date().toLocaleString());
+    console.log("UTC Time:", new Date().toISOString()); // Example: 2025-06-10T11:25:00.000Z
   },
 );
 
