@@ -29,10 +29,6 @@ cron.schedule(
     // });
     console.log("Date / Time:", new Date().toLocaleString());
   },
-  {
-    scheduled: true,
-    timezone: "Asia/Singapore",
-  }
 );
 
 // Server Start
