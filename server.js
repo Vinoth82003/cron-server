@@ -2,8 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
-const axios = require("axios");
-const { default: BlobUrl } = require("./Delete/BlobUrls");
+const BlobUrl = require("./Delete/BlobUrls");
 
 const app = express();
 
@@ -16,20 +15,26 @@ mongoose
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
-cron.schedule(
-  "* * * * *",
-  async () => {
-    console.log("🔔 Running event reminder");
-    // const blobUrl = BlobUrl.find({});
+cron.schedule("* * * * *", async () => {
+  console.log("🔔 Running event reminder");
 
-    // await fetch("http://localhost:3000/api/delete", {
-    //   method: "DELETE",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ code: "4321" }),
-    // });
-    console.log("UTC Time:", new Date().toISOString()); // Example: 2025-06-10T11:25:00.000Z
-  },
-);
+  try {
+    const now = new Date();
+
+    // Find expired codes
+    const expiredCodes = await BlobUrl.find({ expireTime: { $lt: now } });
+
+    // Find non-expired codes
+    const activeCodes = await BlobUrl.find({ expireTime: { $gte: now } });
+
+    console.log("🟥 Expired Codes:", expiredCodes);
+    console.log("🟩 Non-expired Codes:", activeCodes);
+  } catch (err) {
+    console.error("❌ Error fetching codes:", err);
+  }
+
+  console.log("UTC Time:", new Date().toISOString());
+});
 
 // Server Start
 const PORT = process.env.PORT || 5000;
