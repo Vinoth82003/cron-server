@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
 const axios = require("axios");
+const { default: BlobUrl } = require("./Delete/BlobUrls");
 
 const app = express();
 
@@ -13,12 +14,20 @@ mongoose
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 cron.schedule(
   "* * * * *",
   async () => {
     console.log("🔔 Running event reminder");
+    // const blobUrl = BlobUrl.find({});
+
+    // await fetch("http://localhost:3000/api/delete", {
+    //   method: "DELETE",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ code: "4321" }),
+    // });
+    console.log("Date / Time:", new Date().toLocaleString());
   },
   {
     scheduled: true,
